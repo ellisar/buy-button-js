@@ -1,6 +1,6 @@
-import ShopifyBuy from '../../src/buybutton';
 import Component from '../../src/component';
 import Updater from '../../src/updater';
+import Template from '../../src/template';
 
 describe('Updater class', () => {
   describe('constructor', () => {
@@ -21,6 +21,11 @@ describe('Updater class', () => {
       component.view.resize = sinon.spy();
       updater = new Updater(component);
     });
+    
+    it('instantiates a template in the component view', () => {
+      assert.instanceOf(updater.component.view.template, Template);
+
+    });
 
     it('merges new config with old config and updates view', () => {
       updater.updateConfig({
@@ -38,7 +43,7 @@ describe('Updater class', () => {
     it('updates iframe if iframe exists', () => {
       component.typeKey = 'product';
       component.view.iframe = {
-        updateStyles: sinon.spy()
+        updateStyles: sinon.spy(),
       };
       component.updateConfig({});
       assert.calledWith(component.view.iframe.updateStyles, component.styles, component.googleFonts)
