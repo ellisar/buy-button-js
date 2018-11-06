@@ -21,10 +21,9 @@ describe('Updater class', () => {
       component.view.resize = sinon.spy();
       updater = new Updater(component);
     });
-    
+
     it('instantiates a template in the component view', () => {
       assert.instanceOf(updater.component.view.template, Template);
-
     });
 
     it('merges new config with old config and updates view', () => {
@@ -46,7 +45,7 @@ describe('Updater class', () => {
         updateStyles: sinon.spy(),
       };
       component.updateConfig({});
-      assert.calledWith(component.view.iframe.updateStyles, component.styles, component.googleFonts)
+      assert.calledWith(component.view.iframe.updateStyles, component.styles, component.googleFonts);
     });
   });
 });
